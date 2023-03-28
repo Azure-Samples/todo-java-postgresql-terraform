@@ -7,6 +7,9 @@
         }
     },
     "features": {
+        "ghcr.io/devcontainers/features/azure-cli:1": {
+            "version": "2.38"
+        },
         "ghcr.io/devcontainers/features/docker-from-docker:1": {
             "version": "20.10"
         },
@@ -16,6 +19,9 @@
         "ghcr.io/devcontainers/features/node:1": {
             "version": "16",
             "nodeGypDependencies": false
+        },
+        "ghcr.io/devcontainers/features/terraform:1": {
+            "version": "latest"
         }
     },
     "customizations": {
