@@ -1,10 +1,10 @@
-# ToDo Application with a Java API and Azure Database for PostgreSQL - Flexible Server on Azure App Service
+# React Web App with Java API and PostgreSQL on Azure
 
 [![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/todo-java-postgresql-terraform)
 
-A complete ToDo application that includes everything you need to build, deploy, and monitor an Azure solution. This application uses the Azure Developer CLI (azd) to get you up and running on Azure quickly, React.js for the Web application, Java for the API, Azure Database for PostgreSQL - Flexible Server for storage, and Azure Monitor for monitoring and logging. It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
+A blueprint for getting a React web app with a Java API and a PostgreSQL database on Azure. The blueprint includes sample application code (a ToDo web app) which can be removed and replaced with your own application code. Add your own source code and leverage the Infrastructure as Code assets (written in Bicep) to get up and running quickly.
 
-Let's jump in and get the ToDo app up and running in Azure. When you are finished, you will have a fully functional web app deployed on Azure. In later steps, you'll see how to setup a pipeline and monitor the application.
+Let's jump in and get this up and running in Azure. When you are finished, you will have a fully functional web app deployed to the cloud. In later steps, you'll see how to setup a pipeline and monitor the application.
 
 <img src="assets/web.png" width="75%" alt="Screenshot of deployed ToDo app">
 
@@ -25,27 +25,19 @@ The following prerequisites are required to use this application. Please ensure 
 The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources - including access policies and roles for your account and service-to-service communication with Managed Identities.
 
 1. Open a terminal, create a new empty folder, and change into it.
-2. Run the following command to initialize the project.
+1. Run the following command to initialize the project, provision Azure resources, and deploy the application code.
 
 ```bash
-azd init --template https://github.com/Azure-Samples/todo-java-postgresql-terraform
+azd up --template https://github.com/Azure-Samples/todo-java-postgresql-terraform
 ```
 
-This command will clone the code to your current folder and prompt you for the following information:
+You will be prompted for the following information:
 
 - `Environment Name`: This will be used as a prefix for the resource group that will be created to hold all Azure resources. This name should be unique within your Azure subscription.
-
-3. Run the following command to package a deployable copy of your application, provision the template's infrastructure to Azure and also deploy the application code to those newly provisioned resources.
-
-```bash
-azd up
-```
-
-This command will prompt you for the following information:
 - `Azure Location`: The Azure location where your resources will be deployed.
 - `Azure Subscription`: The Azure Subscription where your resources will be deployed.
 
-> NOTE: This may take a while to complete as it executes three commands: `azd package` (packages a deployable copy of your application), `azd provision` (provisions Azure resources), and `azd deploy` (deploys application code). You will see a progress indicator as it packages, provisions and deploys your application.
+> NOTE: This may take a while to complete as it executes three commands: `azd init` (initializes environment), `azd provision` (provisions Azure resources), and `azd deploy` (deploys application code). You will see a progress indicator as it provisions and deploys your application.
 
 When `azd up` is complete it will output the following URLs:
 
@@ -60,7 +52,7 @@ Click the web application URL to launch the ToDo app. Create a new collection an
 > NOTE:
 >
 > - The `azd up` command will create Azure resources that will incur costs to your Azure subscription. You can clean up those resources manually via the Azure portal or with the `azd down` command.
-> - You can call `azd up` as many times as you like to both provision and deploy your solution.
+> - You can call `azd up` as many times as you like to both provision and deploy your solution, but you only need to provide the `--template` parameter the first time you call it to get the code locally. Subsequent `azd up` calls do not require the template parameter. If you do provide the parameter, all your local source code will be overwritten if you agree to overwrite when prompted.
 > - You can always create a new environment with `azd env new`.
 
 ### Application Architecture
