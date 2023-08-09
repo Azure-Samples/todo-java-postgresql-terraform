@@ -18,14 +18,24 @@ variable "resource_token" {
   type        = string
 }
 
-variable "administrator_login" {
+variable "principal_id" {
+  description = "The Id of the service principal to add to deployed keyvault access policies"
+  sensitive   = true
   type        = string
-  description = "The PostgreSQL administrator login"
-  default     = "psqladmin"
 }
 
-variable "database_name" {
-  type        = string
-  description = "The database name of PostgreSQL"
-  default     = "todo"
+variable "access_policy_object_ids" {
+  description = "A list of object ids to be be added to the keyvault access policies"
+  type        = list(string)
+  sensitive   = true
+  default     = []
+}
+
+variable "secrets" {
+  description = "A list of secrets to be added to the keyvault"
+  type = list(object({
+    name  = string
+    value = string
+  }))
+  sensitive = true
 }
