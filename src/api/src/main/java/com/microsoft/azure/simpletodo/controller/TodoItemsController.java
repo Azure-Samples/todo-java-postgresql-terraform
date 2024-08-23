@@ -11,7 +11,6 @@ import com.microsoft.azure.simpletodo.model.TodoList;
 import com.microsoft.azure.simpletodo.model.TodoState;
 import com.microsoft.azure.simpletodo.repository.TodoItemRepository;
 import com.microsoft.azure.simpletodo.repository.TodoListRepository;
-import jakarta.transaction.Transactional;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
@@ -22,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import jakarta.transaction.Transactional;
 
 @RestController
 @Transactional
@@ -100,11 +100,7 @@ public class TodoItemsController implements ItemsApi {
         return todoListRepository
             .findById(listId)
             .map(l ->
-                todoItemRepository.findByListIdAndState(
-                    l.getId(),
-                    state.name(),
-                    PageRequest.of(skip.intValue(), top.intValue())
-                )
+                todoItemRepository.findByListIdAndState(l.getId(), state.name(), PageRequest.of(skip.intValue(), top.intValue()))
             )
             .map(ResponseEntity::ok)
             .orElseGet(() -> ResponseEntity.notFound().build());
