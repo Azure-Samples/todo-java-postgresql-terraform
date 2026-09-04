@@ -1,5 +1,8 @@
 # React Web App with Java API and PostgreSQL on Azure
 
+> [!WARNING]
+> This repository is archived and no longer maintained. For more Azure Developer CLI (`azd`) samples, visit [Awesome AZD](https://aka.ms/awesome-azd).
+
 [![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/todo-java-postgresql-terraform)
 
 A blueprint for getting a React web app with a Java API and a PostgreSQL database on Azure. The blueprint includes sample application code (a ToDo web app) which can be removed and replaced with your own application code. Add your own source code and leverage the Infrastructure as Code assets (written in Bicep) to get up and running quickly.
